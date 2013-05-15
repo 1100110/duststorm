@@ -8,6 +8,7 @@ immutable VersionName   = "duststorm";
 shared static this()
 { 
     // General Setup
+    setPlainLogging( false );
     setLogLevel( LogLevel.Debug );
     setLogFile( "duststorm.log" );
     

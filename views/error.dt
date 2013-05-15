@@ -12,17 +12,15 @@ html(lang='en-US')
   
   body
     - if( err.code == 404 )
-      :markdown
-        Oops!
-        =====
-        Looks like that doesn't exist...
-
-        [Think it should?](http://github.com/1100110/duststorm/issues)
+      h1 Oops!
+      p Looks like 
+        a(href='#{req.path}') that
+        | doesn't exist...
+      a(href='https://github.com/1100110/duststorm/issues') Think it should?
 
     - else
-      :markdown
-        Oops!
-        =====
+      h1 Oops!
 
-        Something went wrong.
-        Don't worry, We can fix it!
+      p Something went wrong.. '#{err.message}'
+      p Don't worry, We can fix it!
+      

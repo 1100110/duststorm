@@ -7,14 +7,14 @@ Interactive books and Tutorials for the [D Programming Language](http://dlang.or
 Design
 ------
 
-This site will utilize D to the fullest extent possible.  
+This site will utilize D to the fullest extent possible.
 The software used will include:
 
 * Vibe.d
 * MongoDB
 * Available Online (Most likely js) Text Editors
 
-The site should use interactivepython.org as a 'guide'.  Note the quotes.  
+The site should use interactivepython.org as a 'guide'.  Note the quotes.
 It is a functional website that does what we want, just for a different language.
 Therefore we can almost compare ourselves 'apples to apples'
 

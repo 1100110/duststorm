@@ -4,10 +4,10 @@
 	"homepage":     "https://dtutor.org",
 	"copyright":    "Copyright © 2013",
 	"authors": [
-		            "Tyro[17] <...>",
+		            "Tyro17 <...>",
                     "Jude Young <1100110>"
 	],
-    "license":      "boostv1.0",
+    "license":      "Boost v1.0",
 	"dependencies": {
                     "vibe-d": ">=0.0.1",
                     "scrypt-d": "~master"
