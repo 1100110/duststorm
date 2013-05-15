@@ -3,4 +3,4 @@
 *.a
 *.so
 *.secret
-duststorm
+duststorm*
