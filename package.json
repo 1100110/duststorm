@@ -1,0 +1,14 @@
+{
+	"name": "duststorm",
+	"description": "Interactive Books and Tutorials for the D Programming Language.",
+	"homepage": "http://dtutor.org",
+	"copyright": "Copyright © 2013",
+	"authors": [
+		"Tyro[7]",
+        "Jude <1100110> Young"
+	],
+	"dependencies": {
+        "vibe-d": ">=0.0.1",
+        "scrypt-d": "~master"
+	}
+}
