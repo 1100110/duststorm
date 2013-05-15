@@ -8,17 +8,17 @@ Design
 ------
 
 This site will utilize D to the fullest extent possible.  
-The tech used will include:
+The software used will include:
 
 * Vibe.d
 * MongoDB
-* Available Online (Most likely js) Editors
+* Available Online (Most likely js) Text Editors
 
 The site should use interactivepython.org as a 'guide'.  Note the quotes.  
 It is a functional website that does what we want, just for a different language.
 Therefore we can almost compare ourselves 'apples to apples'
 
-Be on the lookout for anything that is more difficult than it is on IP.org
+Be on the lookout for anything that is more difficult than it is on interactivepython:
 Account Creation, Login, Navigation, etc.
 
 
