@@ -5,16 +5,11 @@ import core.time;
 
 /// Start A New Thread/Fiber, loop until shutdown.
 shared static this()  {
-    /// Init Log Files
-    //setPlainLogging( false );
-    //setLogLevel( LogLevel.None );
-
-    /// Let the program get started, can cause a race condition if missing.
-    sleep( 16.dur!"seconds" );
     
-    // Careful you don't block anything, and write a log file while you're at it.
-    runTask({
-        while(true) { // Same old staying out of the way
+    runTask({ // Careful you don't block anything.
+        sleep( 16.dur!"seconds" ); 
+        //Let the program get started, can cause a race condition if missing.
+        while(true) { // Same old same old staying out of the way
             //no seriously, stay out of the way.        
             logDebug( "Program Status: %s", Info.status  );
             yield();

@@ -1,17 +1,27 @@
 module duststorm;
-
-import vibe.d;
+import std.conv, std.stdio, std.file, vibe.d, scrypt.password;
 import dtutor.api, dtutor.info;
 
 // Create Immutable Data
 immutable VersionNumber = "0.0.1";
 immutable VersionName   = "duststorm";
 
-shared static this() {
+private static void initialize() 
+{   // Move these if they exist.
+    if( existsFile( ".log/trace.log" ))
+        moveFile( ".log/trace.log", ".log/trace.old.log" );
 
+    if( existsFile( ".log/warn.log" ))
+        moveFile( ".log/warn.log", ".log/warn.old.log" );
+}
+
+shared static this() {
+    initialize();
+    
     setPlainLogging( false );
     setLogFile( ".log/warn.log",  LogLevel.Warn );
     setLogFile( ".log/trace.log", LogLevel.Trace);
+    
     enableWorkerThreads();
     
     // Init Required Classes...
@@ -29,15 +39,6 @@ shared static this() {
 
     // Start the Event Loop
     listenHttp( settings, router );
-}
-
-
-shared static ~this()
-{
-    if( existsFile( ".log/trace.log" ) || existsFile( ".log/warn.log" )) {
-        moveFile( ".log/trace.log", ".log/old.trace.log" );
-        moveFile( ".log/warn.log",  ".log/old.warn.log"  );
-    }
 }
 
 /// Handles Error Page Generation
