@@ -1,26 +1,28 @@
+module duststorm;
+
 import vibe.d;
+import dtutor.api, dtutor.info;
 
 // Create Immutable Data
 immutable VersionNumber = "0.0.1";
 immutable VersionName   = "duststorm";
 
-/// Startup Code
-shared static this()
-{ 
-    // General Setup
-    setPlainLogging( false );
-    setLogLevel( LogLevel.Debug );
-    setLogFile( "duststorm.log" );
-    
-    // Init Required Classes
-    auto settings = new HttpServerSettings;
-    auto router   = new UrlRouter;
+shared static this() {
 
-    // Init Required Settings
-    debug settings.port = 8080;
-    settings.errorPageHandler = toDelegate( &errorPage );
+    setPlainLogging( false );
+    setLogFile( "./.log/error.log", LogLevel.Warn );
+    enableWorkerThreads();
+    
+    // Init Required Classes...
+    auto settings   = new HttpServerSettings;
+    auto router     = new UrlRouter;
+
+    // Init Required Settings...
+    settings.port   = 8080;
+    settings.errorPageHandler 
+                    = toDelegate( &errorPage );
    
-    // Setup Default Routing.
+    // Setup Default Routing...
     router.get( "*",    serveStaticFiles( "./public/" ));
     router.get( "/",    staticTemplate!"index.dt" );
 
@@ -29,11 +31,24 @@ shared static this()
 }
 
 
-/// Handles Error page generation.
-void errorPage( HttpServerRequest   req, 
-                HttpServerResponse  res, 
-                HttpServerErrorInfo err) {
+shared static ~this()
+{
+    if( existsFile( "./.log/trace.log" ))
+        moveFile( "./.log/trace.log", "./.log/old.log" );
+}
+
+/// Handles Error Page Generation
+static void errorPage(  HttpServerRequest req, 
+                        HttpServerResponse res, 
+                        HttpServerErrorInfo err) {
     
     res.renderCompat!("error.dt", HttpServerRequest,   "req",
                                   HttpServerErrorInfo, "err")(req, err);
+}
+
+
+void login( HttpServerRequest   req,
+            HttpServerResponse  res)
+{
+
 }

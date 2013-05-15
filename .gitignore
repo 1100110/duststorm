@@ -4,4 +4,6 @@
 *.so
 *.secret
 .todo
+.log/
+.log/*
 duststorm*

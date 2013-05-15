@@ -1,0 +1,27 @@
+- void css(string file)
+  link(rel='stylesheet', type='text/css', href='#{req.rootDir}styles/#{file}.css')
+
+!!! 5
+html(lang='en-US')
+  meta(charset='utf-8')  
+  link(rel="shortcut icon", type='image/x-icon', href='#{req.rootDir}images/favicon.ico')
+
+  head
+    title DTutor - Interactive D Tutorials and Books
+
+  body
+    :markdown
+      DTutor.org
+      ==========
+
+      Coming Soon!
+      ------------
+
+      Wanna Help?
+      -----------
+      * Devs - Join us [here!](https://github.com/1100110/duststorm)
+      * UI Guys - Please Help me design a good, clean site that doesn't make my eyes bleed.
+
+      Why is this Forked?
+      -------------------
+      I don't know if Tyro17 is still interested...
