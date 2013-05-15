@@ -6,22 +6,21 @@ import core.time;
 /// Start A New Thread/Fiber, loop until shutdown.
 shared static this()  {
     
-    runTask({ // Careful you don't block anything.
+    runTask({  // Careful you don't block anything.
         sleep( 16.dur!"seconds" ); 
         //Let the program get started, can cause a race condition if missing.
         while(true) { // Same old same old staying out of the way
             //no seriously, stay out of the way.        
+            //yield();
             logDebug( "Program Status: %s", Info.status  );
-            yield();
             sleep( 1.dur!"seconds" );
 
+            //yield();
             logDebug( "Memory Info: %s",    Info.memInfo );
-            yield();
             sleep( 1.dur!"seconds" );
 
+            //yield();
             logDebug( "Load Average: %s",   Info.loadAvg );
-            yield();
-            sleep( 1.dur!"seconds" );
             
             sleep( 16.dur!"seconds" );
         }

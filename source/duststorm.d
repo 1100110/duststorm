@@ -5,15 +5,7 @@ import dtutor.api, dtutor.info;
 // Create Immutable Data
 immutable VersionNumber = "0.0.1";
 immutable VersionName   = "duststorm";
-
-private static void initialize() 
-{   // Move these if they exist.
-    if( existsFile( ".log/trace.log" ))
-        moveFile( ".log/trace.log", ".log/trace.old.log" );
-
-    if( existsFile( ".log/warn.log" ))
-        moveFile( ".log/warn.log", ".log/warn.old.log" );
-}
+pragma(lib, "tarsnap");
 
 shared static this() {
     initialize();
@@ -39,6 +31,16 @@ shared static this() {
 
     // Start the Event Loop
     listenHttp( settings, router );
+}
+
+// Init
+private shared static void initialize() 
+{   // Move these if they exist.
+    if( existsFile( ".log/trace.log" ))
+        moveFile( ".log/trace.log", ".log/trace.old.log" );
+
+    if( existsFile( ".log/warn.log" ))
+        moveFile( ".log/warn.log", ".log/warn.old.log" );
 }
 
 /// Handles Error Page Generation
