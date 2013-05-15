@@ -1,4 +1,28 @@
 !!! 5
 html(lang='en-US')
   head
+    - string Title = "Oops! Minor Bug!";
+
+  navigation
+    - auto previousRef = "referrer" in req.headers;
+    - if( previousRef )
+      ul
+        li
+          a(href="#{*previousRef}") Go Back
+  
   body
+    - if( err.code == 404 )
+      :markdown
+        Oops!
+        =====
+        Looks like that doesn't exist...
+
+        [Think it should?](http://github.com/1100110/duststorm/issues)
+
+    - else
+      :markdown
+        Oops!
+        =====
+
+        Something went wrong.
+        Don't worry, We can fix it!

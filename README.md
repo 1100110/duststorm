@@ -1,7 +1,7 @@
-duststorm
-=========
+DTutor.org
+==========
 
-Interactive books and tutorials for the D Programming Language.
+Interactive books and Tutorials for the [D Programming Language](http://dlang.org).
 
 
 Design
@@ -12,19 +12,20 @@ The tech used will include:
 
 * Vibe.d
 * MongoDB
+* Available Online (Most likely js) Editors
 
-
-The site should use interactivepython.org as a 'guide'.  It is a functional
-website that does what we want, just for a different language.
+The site should use interactivepython.org as a 'guide'.  Note the quotes.  
+It is a functional website that does what we want, just for a different language.
+Therefore we can almost compare ourselves 'apples to apples'
 
 Be on the lookout for anything that is more difficult than it is on IP.org
-
+Account Creation, Login, Navigation, etc.
 
 
 Tutorials
 ---------
 
-The formats to be used:
+The format to be used:
 
 * Markdown 
 
@@ -32,4 +33,4 @@ Unlike many other formats, Markdown provides a good compromise between
 plain-text and postprocessed text.  We will 'pretty-print' the text on page load,
 as well as make it available for download.
 
-
+Markdown also allows for embedded code snippets, which is very much what we want.
