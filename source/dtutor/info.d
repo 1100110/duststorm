@@ -6,9 +6,8 @@ import core.time;
 /// Start A New Thread/Fiber, loop until shutdown.
 shared static this()  {
     /// Init Log Files
-    setPlainLogging( false );
-    setLogLevel( LogLevel.None );
-    setLogFile( "./.log/trace.log",   LogLevel.Trace);
+    //setPlainLogging( false );
+    //setLogLevel( LogLevel.None );
 
     /// Let the program get started, can cause a race condition if missing.
     sleep( 16.dur!"seconds" );

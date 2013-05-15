@@ -10,7 +10,8 @@ immutable VersionName   = "duststorm";
 shared static this() {
 
     setPlainLogging( false );
-    setLogFile( "./.log/error.log", LogLevel.Warn );
+    setLogFile( ".log/warn.log",  LogLevel.Warn );
+    setLogFile( ".log/trace.log", LogLevel.Trace);
     enableWorkerThreads();
     
     // Init Required Classes...
@@ -19,12 +20,12 @@ shared static this() {
 
     // Init Required Settings...
     settings.port   = 8080;
-    settings.errorPageHandler 
-                    = toDelegate( &errorPage );
+    settings.errorPageHandler = toDelegate( &errorPage );
    
     // Setup Default Routing...
     router.get( "*",    serveStaticFiles( "./public/" ));
     router.get( "/",    staticTemplate!"index.dt" );
+
 
     // Start the Event Loop
     listenHttp( settings, router );
@@ -33,8 +34,10 @@ shared static this() {
 
 shared static ~this()
 {
-    if( existsFile( "./.log/trace.log" ))
-        moveFile( "./.log/trace.log", "./.log/old.log" );
+    if( existsFile( ".log/trace.log" ) || existsFile( ".log/warn.log" )) {
+        moveFile( ".log/trace.log", ".log/old.trace.log" );
+        moveFile( ".log/warn.log",  ".log/old.warn.log"  );
+    }
 }
 
 /// Handles Error Page Generation
