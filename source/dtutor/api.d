@@ -8,7 +8,7 @@ shared static this()
 {
     auto settings   = new HttpServerSettings;
     auto routes     = new UrlRouter;
-	
+    
     registerRestInterface( routes, new Apiv1, "/api/v1/" );
 
     settings.port   = 8080;

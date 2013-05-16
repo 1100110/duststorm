@@ -1,4 +1,5 @@
-import std.conv, std.stdio, std.file, vibe.d, scrypt.password;
+import std.conv, std.stdio, std.file;
+import vibe.d;
 import dtutor.api, dtutor.info;
 
 // Create Immutable Data
@@ -8,7 +9,7 @@ immutable VersionName   = "duststorm";
 shared static this() 
 {
     initialize();
-    // Init Required Classes...
+    //Init Required Classes...
     auto settings   = new HttpServerSettings;
     auto router     = new UrlRouter;
 
@@ -24,11 +25,11 @@ shared static this()
     listenHttp( settings, router );
 }
 
-private shared static void initialize() 
+private void initialize() 
 {   // Move these if they exist.
     if( existsFile( ".log/trace.log" ))
         moveFile( ".log/trace.log", ".log/trace.old.log" );
-    // Really simple 'backups'
+     // Really simple 'backups'
     if( existsFile( ".log/warn.log" ))
         moveFile( ".log/warn.log", ".log/warn.old.log" );
     

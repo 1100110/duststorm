@@ -9,9 +9,7 @@
 	],
     "license":      "Boost v1.0",
 	"dependencies": {
-                    "vibe-d":   ">=0.0.1",
-                    "scrypt-d": "~master",
-                    "LuaD":     { "version": "~master", "path": "/home/jude/Code/LuaD/" },
+                    "vibe-d":   "~master",
 	},
     "buildRequirements": [
                     "relaxProperties"

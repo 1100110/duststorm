@@ -6,7 +6,7 @@ import core.time;
 shared static this() {
     
     runTask({
-        sleep( 500.dur!"msecs" ); 
+        sleep( 2.dur!"seconds" ); 
         //Let the program get started, can cause a race condition if missing.
         while(true) { // Same old same old staying out of the way
             logDebug( "Program Status: %s", Info.status  );
@@ -21,17 +21,19 @@ shared static this() {
         }
     });
 
-    //logInfo ( "%s", Info.sizeof); 1 byte
+    //logInfo ( "%s", Info.sizeof);// 1 byte
 }
 
 
 package struct Info {
     // just some locations
-    static immutable procLoadAvg = "/proc/loadavg";
-    static immutable procMemInfo = "/proc/meminfo";
-    static immutable procSelf    = "/proc/self/status";
+    enum procLoadAvg = "/proc/loadavg";
+    enum procMemInfo = "/proc/meminfo";
+    enum procSelf    = "/proc/self/status";
     
-    // We are updating every 30 seconds, Let's not need to use the GC that often.
+    // We are updating every 30 seconds or so, 
+    // We will only have two statuses, the next one and the last one.
+    // Just reuse the var rather than re-init'ing (is that a word?)
     static string[] lastMemInfo;
     static string[] lastStatus;
     static real[3]  lastLoadAvg;
