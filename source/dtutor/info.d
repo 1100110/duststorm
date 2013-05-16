@@ -1,41 +1,39 @@
 module dtutor.info;
-import std.array, std.conv, std.file;
+import std.algorithm, std.array, std.conv, std.file;
 import vibe.core.core, vibe.core.log, vibe.core.concurrency;
 import core.time;
 
-/// Start A New Thread/Fiber, loop until shutdown.
-shared static this()  {
+shared static this() {
     
-    runTask({  // Careful you don't block anything.
-        sleep( 16.dur!"seconds" ); 
+    runTask({
+        sleep( 500.dur!"msecs" ); 
         //Let the program get started, can cause a race condition if missing.
         while(true) { // Same old same old staying out of the way
-            //no seriously, stay out of the way.        
-            //yield();
             logDebug( "Program Status: %s", Info.status  );
             sleep( 1.dur!"seconds" );
 
-            //yield();
             logDebug( "Memory Info: %s",    Info.memInfo );
             sleep( 1.dur!"seconds" );
 
-            //yield();
             logDebug( "Load Average: %s",   Info.loadAvg );
             
             sleep( 16.dur!"seconds" );
         }
     });
+
+    //logInfo ( "%s", Info.sizeof); 1 byte
 }
 
-// PRIVATE, TODO: create public functions that only 
+
 package struct Info {
     // just some locations
-    immutable procLoadAvg = "/proc/loadavg";
-    immutable procMemInfo = "/proc/meminfo";
-    immutable procSelf    = "/proc/self/status";
+    static immutable procLoadAvg = "/proc/loadavg";
+    static immutable procMemInfo = "/proc/meminfo";
+    static immutable procSelf    = "/proc/self/status";
+    
     // We are updating every 30 seconds, Let's not need to use the GC that often.
-    static string[] lastStatus;
     static string[] lastMemInfo;
+    static string[] lastStatus;
     static real[3]  lastLoadAvg;
 
     
@@ -44,7 +42,7 @@ package struct Info {
     }
 
     static real[3] loadAvg() {
-        immutable txt = readText!string( procLoadAvg )[0..15];
+        immutable txt = readText( procLoadAvg )[0..15];
 
         lastLoadAvg[0] = txt[ 0..4 ].to!real();
         lastLoadAvg[1] = txt[ 5..9 ].to!real();
@@ -54,6 +52,6 @@ package struct Info {
     }
 
     static string[] memInfo() {
-        return lastMemInfo = readText!string( procMemInfo ).split();
+        return lastMemInfo = readText( procMemInfo ).split();
     }
 }
